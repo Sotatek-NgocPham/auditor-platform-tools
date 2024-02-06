@@ -1,9 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import semver from 'semver';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as semver from 'semver';
 import type { SourceUnit } from 'solidity-ast';
 
-const versions = Object.keys(require('../package.json').dependencies)
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const versions = Object.keys(require('../../../package.json').dependencies)
   .filter((s) => s.startsWith('solc-'))
   .map((s) => s.replace('solc-', ''))
   .sort(semver.compare)
@@ -28,6 +29,7 @@ const compile = async (
   toCompile: ToCompile,
   basePath: string,
 ) => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const solc = require(`solc-${version}`);
 
   // version() returns something like '0.8.13+commit.abaa5c0e.Emscripten.clang'

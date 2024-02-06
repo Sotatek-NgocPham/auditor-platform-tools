@@ -1,15 +1,17 @@
 import { Injectable, Logger } from '@nestjs/common';
-import fs from 'fs';
+import * as fs from 'fs';
 import { gitUrlToSsh, recursiveExploration } from './4naly3er.utils';
 import { InputType, IssueTypes } from './4naly3er.types';
 import compileAndBuildAST from './4naly3er.compile';
-import path from 'node:path';
+import * as path from 'node:path';
 import analyze from './4naly3er.analyze';
 import issues from './issues';
 import { simpleGit } from 'simple-git';
 import { rimrafSync } from 'rimraf';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const util = require('util');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const exec = util.promisify(require('child_process').exec);
 
 @Injectable()
@@ -41,7 +43,10 @@ export class _4naly3erService {
       for (const word of [...content.matchAll(/[a-zA-Z\/\.\-\_0-9]+/g)].map(
         (r) => r[0],
       )) {
-        if (word.endsWith('.sol') && fs.existsSync(`${basePath}${word}`)) {
+        if (
+          word.endsWith('.sol') &&
+          fs.existsSync(`${path.join(basePath, word)}`)
+        ) {
           fileNames.push(word);
         }
       }

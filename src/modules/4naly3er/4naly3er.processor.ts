@@ -2,6 +2,7 @@ import { InjectQueue, Process, Processor } from '@nestjs/bull';
 import { EQueueJob, EQueueName } from '../queue/queue.constant';
 import { Job, Queue } from 'bull';
 import { Logger } from '@nestjs/common';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { _4naly3erService } from './4naly3er.service';
 
 export interface IAnalyzeProjectJobData {
@@ -21,7 +22,7 @@ export class _4naly3erProcessor {
     private readonly analysisQueue: Queue,
   ) {}
 
-  @Process({ name: EQueueJob.HANDLE_ANALYZE_PROJECT })
+  @Process(EQueueJob.HANDLE_ANALYZE_PROJECT)
   async analyzeProject(job: Job<IAnalyzeProjectJobData>) {
     const { id, github, scope } = job.data;
     try {

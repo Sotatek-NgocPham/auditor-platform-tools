@@ -1,14 +1,15 @@
 import { InputType, Instance } from './4naly3er.types';
-import fs from 'fs';
+import * as fs from 'fs';
 import { findAll } from 'solidity-ast/utils';
 import { ContractDefinition } from 'solidity-ast';
 import { exec } from 'child_process';
-import path from 'node:path';
+import * as path from 'node:path';
 
 /**
  * @notice Returns the line corresponding to a character index in a file
  */
 export const lineFromIndex = (file: string, index: number) => {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
   return 1 + [...file?.slice(0, index).matchAll(/\n/g)!].length;
 };
 
@@ -151,6 +152,7 @@ export const gitUrlToSsh = (url: string) => {
 
   const match = url.match(regex);
   if (match && match.length === 4) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_, protocol, repoPath, trailingSlash] = match;
 
     const formattedRepoPath = repoPath.endsWith('/')

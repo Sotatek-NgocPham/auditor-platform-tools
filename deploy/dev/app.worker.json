@@ -1,0 +1,15 @@
+{
+  "apps": [
+    {
+      "name": "dev.auditor-platform.auditor-platform-tools",
+      "script": "node",
+      "args": "./dist/main.js",
+      "log_date_format": "YYYY-MM-DD hh:mm:ss",
+      "namespace": "development-auditor-platform",
+      "env" : {
+        "REDIS_HOST": "localhost",
+        "REDIS_PORT": 6379
+      }
+    }
+  ]
+}

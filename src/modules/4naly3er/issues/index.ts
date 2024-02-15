@@ -2,7 +2,7 @@ import { Issue } from '../4naly3er.types';
 import { recursiveExploration } from '../4naly3er.utils';
 import * as path from 'path';
 
-const fileNames = recursiveExploration(__dirname + '/', '.ts');
+const fileNames = recursiveExploration(__dirname + '/', '.js');
 
 const issues: Issue[] = [];
 for (let file of fileNames) {
